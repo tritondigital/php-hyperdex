@@ -1,0 +1,72 @@
+hpRedis
+=============
+The hyperdex extension provides an API for communicating with the Hyperdex key-value store. It is released under the [PHP License, version 3.01](http://www.php.net/license/3_01.txt).
+This code has been developed and maintained by Triton Digital Media
+
+
+Installing/Configuring
+======================
+
+<pre>
+phpize
+./configure --enable-hyperdex
+make
+make install
+</pre>
+
+`make install` copies `hyperdex.so` to an appropriate location, but you still need to enable the module in the PHP config file. To do so, either edit your php.ini or add a redis.ini file in `/etc/php5/conf.d` with the following contents: `extension=hyperdex.so`.
+
+You can generate a debian package for PHP5, accessible from Apache 2 by running `./mkdeb-apache2.sh` or with `dpkg-buildpackage` or `svn-buildpackage`.
+
+This extension exports a single class, hyperclient (and `HyperDexException` used in case of errors).
+
+
+Usage
+====================
+
+The hyperclient exposes the following methods:
+
+Boolean hyperclient::connect( string host, int port )
+Boolean hyperclient::disconnect()
+
+Boolean hyperclient::put( String space, String key, Array attributes )
+Boolean hyperclient::put_attr( String space, String key, String attr_name, Mixed value )
+Boolean hyperclient::condput( String space, String key, Array conditionals, Array attributes )
+
+Boolean hyperclient::lpush( String space, String key, Array attributes )
+Boolean hyperclient::rpush( String space, String key, Array attributes )
+
+Boolean hyperclient::set_add( String space, String key, Array attributes )
+Boolean hyperclient::set_remove( String space, String key, Array attributes )
+Boolean hyperclient::set_union( String space, String key, Array attributes )
+Boolean hyperclient::set_intersect( String space, String key, Array attributes )
+
+Boolean hyperclient::add( String space, String key, Array attributes )
+Boolean hyperclient::sub( String space, String key, Array attributes )
+Boolean hyperclient::mul( String space, String key, Array attributes )
+Boolean hyperclient::div( String space, String key, Array attributes )
+Boolean hyperclient::mod( String space, String key, Array attributes )
+Boolean hyperclient::and( String space, String key, Array attributes )
+Boolean hyperclient::or( String space, String key, Array attributes )
+Boolean hyperclient::xor( String space, String key, Array attributes )
+
+Array hyperclient::search( String space, Array cond_attrs, Array range_attrs )
+
+Array hyperclient::get( String space, String key )
+Mixed hyperclient::get_attr( String space, String key, String attr_name )
+
+Boolean hyperclient::del( String space, String key )
+
+
+
+Example:
+=========
+
+$hdp = new hyperclient('127.0.0.1', 1234);
+
+$val = $hdp->put( 'phonebook','jsmith1', array( 'first' => 'Brad', 'last' => 'Broerman', 'phone' => 123456 ) );
+
+$val = $hdp->get( 'phonebook','jsmith1' );
+
+var_dump( $val );
+
