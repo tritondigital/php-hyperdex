@@ -1,7 +1,17 @@
 hpRedis
 =============
-The hyperdex extension provides an API for communicating with the Hyperdex key-value store. It is released under the [PHP License, version 3.01](http://www.php.net/license/3_01.txt).
-This code has been developed and maintained by Triton Digital Media
+The hyperdex extension provides an API for communicating with the Hyperdex key-value store. 
+It is released under the [PHP License, version 3.01](http://www.php.net/license/3_01.txt).
+
+This code has been developed and maintained by Triton Digital Media, and provided to the open 
+source community as a "thank you". We use open source software in our business, and feel that it 
+is only right to give back whenever we can.
+
+For more information on Hyperdex, please see http://hyperdex.org/
+
+
+For comments, or issues, please contact bbroerman@tritonmedia.com
+
 
 
 Installing/Configuring
